@@ -293,7 +293,9 @@ function unbindMusicGestures(){
   for(const type of musicGestures)window.removeEventListener(type,startMusicOnGesture);
   document.removeEventListener('scroll',startMusicOnGesture,{capture:true});
 }
-beginMusic().then(ok=>{if(!ok)bindMusicGestures();});
+// Arm the first-gesture fallback right away; if autoplay works we simply unbind it.
+bindMusicGestures();
+beginMusic().then(ok=>{if(ok)unbindMusicGestures();});
 $('music-toggle').addEventListener('click',async()=>{
   if(musicEnabled){musicMutedByUser=true;musicEnabled=false;stopMusicVoices();syncMusicButton();unbindMusicGestures();return;}
   musicMutedByUser=false;
