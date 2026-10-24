@@ -60,8 +60,19 @@
 
 /* letter as a page section */
 .letter-section{max-width:760px;margin:auto;padding:96px 24px 10px;scroll-margin-top:24px}
-.letter-sheet{background:#fffdf8;border:1px solid #e5d8c5;border-radius:10px;box-shadow:0 26px 80px #39261b12;overflow:hidden}
+.letter-sheet{background:#fffdf8;border:1px solid #e5d8c5;border-radius:10px;box-shadow:0 26px 80px #39261b12;overflow:hidden;transform-origin:50% 100%}
 @media(max-width:700px){.letter-section{padding:58px 16px 0;scroll-margin-top:12px}.letter-sheet{border-radius:8px}}
+
+/* the sheet slides out of the envelope as it enters view */
+.js .letter-sheet{opacity:0;transform:translateY(52px) rotate(-1.6deg) scale(.985)}
+.js .letter-sheet.in{animation:paper-out 1.15s cubic-bezier(.18,.85,.3,1) forwards}
+@keyframes paper-out{
+  0%{opacity:0;transform:translateY(52px) rotate(-1.6deg) scale(.985)}
+  45%{opacity:1;transform:translateY(-9px) rotate(.55deg) scale(1.003)}
+  72%{transform:translateY(4px) rotate(-.22deg) scale(1)}
+  88%{transform:translateY(-1px) rotate(.05deg)}
+  100%{opacity:1;transform:none}
+}
 
 /* story spine: a hairline that draws itself as you read */
 .story-moments{position:relative}
@@ -118,6 +129,7 @@
   .hero-art,.art-spark{animation:none!important}
   .js .reveal{opacity:1!important;transform:none!important}
   .js .gallery img{opacity:1!important}
+  .js .letter-sheet{opacity:1!important;transform:none!important;animation:none!important}
 }
 
 </style>
@@ -471,7 +483,7 @@ function candleBurst(){
 
 try{
   document.documentElement.classList.add('js');
-  const targets=[...document.querySelectorAll('.little-wishes,.our-story,.moments-head,.confession,.letter-section,.wish-section,.closing')];
+  const targets=[...document.querySelectorAll('.little-wishes,.our-story,.moments-head,.confession,.wish-section,.closing')];
   targets.push(...document.querySelectorAll('.story-moments li'));
   targets.push(...document.querySelectorAll('.gallery figure'));
   if('IntersectionObserver' in window){
@@ -490,6 +502,19 @@ try{
     const done=()=>img.classList.add('loaded');
     if(img.complete&&img.naturalWidth)done();else img.addEventListener('load',done,{once:true});
   });
+
+  // the letter sheet pulls itself out of the envelope the first time it comes into view
+  const sheet=document.querySelector('.letter-sheet');
+  if(sheet){
+    if(!('IntersectionObserver' in window)||reducedMotion.matches){
+      sheet.classList.add('in');
+    }else{
+      const sio=new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{if(e.isIntersecting){sheet.classList.add('in');sio.unobserve(sheet);}});
+      },{threshold:.22});
+      sio.observe(sheet);
+    }
+  }
 }catch(err){
   document.documentElement.classList.remove('js');
 }
