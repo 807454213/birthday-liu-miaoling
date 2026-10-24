@@ -47,6 +47,41 @@
 .confession+.wish-section{padding-top:60px}
 @media(max-width:700px){.confession{padding:56px 26px 10px}.confession h2{font-size:27px}.confession-body{font-size:12.5px;line-height:2.15}.confession-last{font-size:14px}.confession+.wish-section{padding-top:58px}}
 
+/* motion polish */
+@keyframes drift{from{translate:0 0}to{translate:0 -10px}}
+@keyframes twinkle{0%,100%{opacity:.35}50%{opacity:1}}
+.art-spark{animation:twinkle 3.6s ease-in-out infinite}
+.spark-two{animation-delay:-1.8s}
+
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.22,.61,.36,1),transform .85s cubic-bezier(.22,.61,.36,1)}
+.js .reveal.in{opacity:1;transform:none}
+.js .gallery img{opacity:0;transition:opacity .8s ease}
+.js .gallery img.loaded{opacity:1}
+
+.hero-copy>*{animation:arrive .8s cubic-bezier(.22,.61,.36,1) both}
+.hero-copy>*:nth-child(2){animation-delay:.08s}
+.hero-copy>*:nth-child(3){animation-delay:.16s}
+.hero-copy>*:nth-child(4){animation-delay:.24s}
+.hero-copy>*:nth-child(5){animation-delay:.32s}
+.hero-art{animation:arrive 1s cubic-bezier(.22,.61,.36,1) both,drift 7.5s ease-in-out 1s infinite alternate}
+.celebration-content>*{animation:arrive .6s cubic-bezier(.22,.61,.36,1) both}
+.celebration-content>*:nth-child(2){animation-delay:.1s}
+.celebration-content>*:nth-child(3){animation-delay:.18s}
+.celebration-content>*:nth-child(4){animation-delay:.26s}
+.celebration-content>*:nth-child(5){animation-delay:.34s}
+
+.burst-layer{position:absolute;inset:0;pointer-events:none;z-index:3}
+.burst-dot{position:absolute;width:5px;height:5px;border-radius:50%;background:#f8ce7a;box-shadow:0 0 12px #f8ce7fdd;opacity:0;transform:translate(-50%,-50%)}
+.cake-experience{position:relative}
+.cake-flash{position:absolute;inset:-12% -6%;pointer-events:none;z-index:2;background:radial-gradient(ellipse at 50% 44%,#ffd98a66,transparent 62%);animation:flash .9s ease-out forwards}
+@keyframes flash{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-art,.art-spark{animation:none!important}
+  .js .reveal{opacity:1!important;transform:none!important}
+  .js .gallery img{opacity:1!important}
+}
+
 </style>
   
 </head>
@@ -192,6 +227,7 @@ $('blow-candles').addEventListener('click', () => {
   candlesOut = true;
   $('blow-candles').disabled = true;
   $('cake').classList.add('candles-out');
+  candleBurst();
   $('cake').setAttribute('aria-label','蜡烛已经吹灭，生日愿望已许下');
   $('cake-caption').textContent = '愿望已悄悄启程。愿它在未来的某一天，轻轻实现。';
   clearTimeout(celebrationTimer);
@@ -216,13 +252,23 @@ function sizeCanvas() {
   canvas.style.height = canvasHeight+'px';
   if (ctx) ctx.setTransform(dpr,0,0,dpr,0,0);
 }
-function addBurst(x,y) {
+function addBurst(x,y,shape) {
   const palette = ['#e8ba7d','#e9caab','#d5b575','#cd967c','#e9e0bf'];
   const color = palette[Math.floor(Math.random()*palette.length)];
-  for (let i=0;i<44;i++) {
-    const angle = Math.PI*2*i/44;
-    const speed = 1.15+Math.random()*2.2;
-    particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:1,color,size:.8+Math.random()*1.2});
+  const count = shape === 'heart' ? 64 : 44;
+  for (let i=0;i<count;i++) {
+    let vx, vy;
+    if (shape === 'heart') {
+      const t = Math.PI*2*i/count;
+      vx = 16*Math.pow(Math.sin(t),3)*0.115;
+      vy = -(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))*0.115;
+      vx += (Math.random()-.5)*.12; vy += (Math.random()-.5)*.12;
+    } else {
+      const angle = Math.PI*2*i/count;
+      const speed = 1.15+Math.random()*2.2;
+      vx = Math.cos(angle)*speed; vy = Math.sin(angle)*speed;
+    }
+    particles.push({x,y,vx,vy,life:1,color,size:.8+Math.random()*1.2});
   }
 }
 function stopFireworks() {
@@ -234,13 +280,17 @@ function drawFireworks(now) {
   if (!celebrationDialog.open || !ctx) return;
   const delta = Math.min((now-lastFrame)/16.67,2);lastFrame=now;
   const elapsed = now-startedAt;
-  while (bursts.length && elapsed>=bursts[0].at) { const b=bursts.shift(); addBurst(canvasWidth*b.x,canvasHeight*b.y); }
-  ctx.clearRect(0,0,canvasWidth,canvasHeight);
+  while (bursts.length && elapsed>=bursts[0].at) { const b=bursts.shift(); addBurst(canvasWidth*b.x,canvasHeight*b.y,b.shape); }
+  // translucent wash instead of clear: leaves a short, soft trail behind each spark
+  ctx.globalCompositeOperation='source-over';
+  ctx.fillStyle='rgba(62,48,42,.20)';
+  ctx.fillRect(0,0,canvasWidth,canvasHeight);
   particles=particles.filter(p=>p.life>0);
   for (const p of particles) {
     p.x+=p.vx*delta;p.y+=p.vy*delta;p.vy+=.018*delta;p.vx*=Math.pow(.988,delta);p.life-=.008*delta;
+    const twinkle=1+Math.sin(now/120+p.x*.05)*.18;
     ctx.globalAlpha=Math.max(0,p.life)*.75;ctx.fillStyle=p.color;
-    ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(p.x,p.y,Math.max(.3,p.size*twinkle),0,Math.PI*2);ctx.fill();
   }
   ctx.globalAlpha=1;
   if (particles.length || bursts.length) animationFrame=requestAnimationFrame(drawFireworks);
@@ -252,7 +302,7 @@ function startFireworks() {
     for(let i=0;i<45;i++){ctx.globalAlpha=.2+Math.random()*.3;ctx.beginPath();ctx.arc(Math.random()*canvasWidth,Math.random()*canvasHeight,.7+Math.random(),0,Math.PI*2);ctx.fill();}
     ctx.globalAlpha=1;return;
   }
-  bursts=[{at:0,x:.18,y:.18},{at:420,x:.83,y:.24},{at:1050,x:.58,y:.10},{at:1900,x:.12,y:.48},{at:2600,x:.87,y:.53},{at:3600,x:.32,y:.17},{at:4500,x:.79,y:.13}];
+  bursts=[{at:0,x:.18,y:.18},{at:420,x:.83,y:.24},{at:1050,x:.58,y:.10,shape:'heart'},{at:1900,x:.12,y:.48},{at:2600,x:.87,y:.53},{at:3600,x:.32,y:.17,shape:'heart'},{at:4500,x:.79,y:.13}];
   startedAt=performance.now();lastFrame=startedAt;animationFrame=requestAnimationFrame(drawFireworks);
 }
 $('replay-fireworks').addEventListener('click',startFireworks);
@@ -326,6 +376,66 @@ document.addEventListener('visibilitychange',()=>{
   if(document.hidden){stopMusicVoices();if(audioContext)audioContext.suspend().catch(()=>{});}
   else if(musicEnabled && audioContext){audioContext.resume().then(playNextNote).catch(()=>{musicEnabled=false;syncMusicButton();});}
 });
+// --- Motion polish: candle spark burst, scroll reveal, photo fade-in ---
+function candleBurst(){
+  if(reducedMotion.matches) return;
+  const box=document.querySelector('.cake-experience');
+  const flameNodes=[...document.querySelectorAll('#cake .flame')];
+  if(!box||!flameNodes.length) return;
+  const boxRect=box.getBoundingClientRect();
+  const layer=document.createElement('div');
+  layer.className='burst-layer';
+  box.appendChild(layer);
+  const flash=document.createElement('div');
+  flash.className='cake-flash';
+  box.appendChild(flash);
+  setTimeout(()=>flash.remove(),1000);
+  flameNodes.forEach(node=>{
+    const r=node.getBoundingClientRect();
+    const cx=r.left+r.width/2-boxRect.left;
+    const cy=r.top+r.height*.3-boxRect.top;
+    for(let i=0;i<10;i++){
+      const dot=document.createElement('i');
+      dot.className='burst-dot';
+      const size=(3+Math.random()*4).toFixed(1);
+      dot.style.cssText=`left:${cx}px;top:${cy}px;width:${size}px;height:${size}px`;
+      layer.appendChild(dot);
+      const a=Math.random()*Math.PI*2,d=22+Math.random()*62;
+      dot.animate([
+        {transform:'translate(-50%,-50%) scale(1)',opacity:0},
+        {transform:`translate(calc(-50% + ${(Math.cos(a)*d*.4).toFixed(1)}px), calc(-50% + ${(Math.sin(a)*d*.4).toFixed(1)}px)) scale(1)`,opacity:.95,offset:.3},
+        {transform:`translate(calc(-50% + ${(Math.cos(a)*d).toFixed(1)}px), calc(-50% + ${(Math.sin(a)*d-18).toFixed(1)}px)) scale(.2)`,opacity:0}
+      ],{duration:1000+Math.random()*600,easing:'cubic-bezier(.2,.7,.3,1)',fill:'forwards'});
+    }
+  });
+  setTimeout(()=>layer.remove(),2200);
+}
+
+try{
+  document.documentElement.classList.add('js');
+  const targets=[...document.querySelectorAll('.little-wishes,.our-story,.moments-head,.confession,.wish-section,.closing')];
+  targets.push(...document.querySelectorAll('.story-moments li'));
+  targets.push(...document.querySelectorAll('.gallery figure'));
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>{
+      for(const e of entries){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}
+    },{rootMargin:'0px 0px -6% 0px',threshold:.08});
+    targets.forEach((el,i)=>{
+      el.classList.add('reveal');
+      el.style.transitionDelay=((i%4)*70)+'ms';
+      io.observe(el);
+    });
+  }else{
+    targets.forEach(el=>el.classList.add('in'));
+  }
+  document.querySelectorAll('.gallery img').forEach(img=>{
+    const done=()=>img.classList.add('loaded');
+    if(img.complete&&img.naturalWidth)done();else img.addEventListener('load',done,{once:true});
+  });
+}catch(err){
+  document.documentElement.classList.remove('js');
+}
+
 window.addEventListener('pagehide',()=>{stopMusicVoices();stopFireworks();});
 
 </script>
