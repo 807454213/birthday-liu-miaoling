@@ -58,6 +58,39 @@
 .js .gallery img{opacity:0;transition:opacity .8s ease}
 .js .gallery img.loaded{opacity:1}
 
+/* story spine: a hairline that draws itself as you read */
+.story-moments{position:relative}
+.story-moments::before{content:"";position:absolute;left:-20px;top:6px;bottom:8px;width:1px;
+  background:linear-gradient(#dfd5c6,#c9b79f 22%,#c9b79f 78%,transparent);
+  transform:scaleY(var(--story-progress,0));transform-origin:top;transition:transform .12s linear}
+@media(max-width:700px){.story-moments::before{left:-9px;top:2px}}
+
+/* photo lightbox */
+.lightbox{inset:0;width:100%;max-width:none;height:100%;max-height:none;margin:0;padding:0;border:0;border-radius:0;
+  background:#241c18;color:#f2e8d8;overflow:hidden}
+.lightbox::backdrop{background:#1b1410}
+.lightbox[open]{animation:fadein .25s ease-out}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.lightbox figure{margin:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:60px 14px 36px}
+.lightbox img{max-width:min(1080px,94vw);max-height:76vh;width:auto;height:auto;border-radius:6px;box-shadow:0 24px 70px #00000070;background:#2c231e}
+.lightbox figcaption{max-width:620px;text-align:center;font-size:12px;line-height:1.95;color:#c9b9a4;letter-spacing:.3px}
+.lightbox-close{position:fixed;top:12px;right:12px;z-index:6;width:40px;height:40px;border-radius:50%;border:1px solid #6b5750;
+  background:#3a2d27cc;color:#efe3d2;font-size:22px;line-height:1}
+.lightbox-nav{position:fixed;top:50%;z-index:6;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;
+  border:1px solid #6b5750;background:#3a2d27cc;color:#efe3d2;font-size:26px;line-height:1}
+.lightbox-nav.prev{left:10px}
+.lightbox-nav.next{right:10px}
+.gallery img{cursor:zoom-in}
+.gallery img:focus-visible{outline:2px solid #a95541;outline-offset:4px}
+
+/* back to top */
+.to-top{position:fixed;right:18px;bottom:18px;z-index:30;width:44px;height:44px;border-radius:50%;
+  border:1px solid #dfd5c6;background:#fffdf8e6;color:#a95541;font-size:18px;line-height:1;
+  box-shadow:0 6px 20px #7a5f4a22;opacity:0;transform:translateY(10px);pointer-events:none;
+  transition:opacity .3s ease,transform .3s ease}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+@media(max-width:700px){.to-top{right:14px;bottom:calc(14px + env(safe-area-inset-bottom))}}
+
 .hero-copy>*{animation:arrive .8s cubic-bezier(.22,.61,.36,1) both}
 .hero-copy>*:nth-child(2){animation-delay:.08s}
 .hero-copy>*:nth-child(3){animation-delay:.16s}
@@ -186,6 +219,13 @@
   <dialog id="letter-dialog" aria-labelledby="letter-title"><button class="close-dialog" data-close="letter-dialog" aria-label="关闭生日信">×</button><article class="letter-content"><p class="eyebrow">A LETTER FOR YOU</p><h2 id="letter-title">妙玲：</h2><p class="letter-salute">生日快乐呀！</p><p>想给你的生日添一点特别，所以悄悄准备了这份小惊喜。希望你打开它的时候，可以收获一个好心情。</p><p>第一次认识你，是在智能车实验室的前期验收。你来问我一些验收里的问题，后来，我们慢慢熟络起来，我对你的初印象就是一个单纯，学习好，听话懂事的好女孩，在慢慢相处过程中，我开始有点喜欢上你，喜欢上你的纯真，你的善良，让我很想保护你，一直陪伴你。</p><p>备赛的日子不轻松。压力大的时候我们都烦躁，也吵过架，说过现在想起来很后悔的话。但让我记得最清楚的，不是那些争吵，而是吵完之后，我们没有丢下责任，而是一起去想解决方法。</p><p>你总是觉得我不听你的话，其实我背地里也经常反复思考你给我的建议，只是很多次我没有说。我总是有点自负和敏感，不敢表达自己的感情，造成了很多误会。</p><p>驱动板炸了的那个晚上，幸好我在。</p><p>也有很好的时候。我们也会像普通朋友那样，吃饭、看电影、玩星露谷。这样的日子，是我这一年最喜欢的部分。</p><p>完模组里有人开始松劲、有人想做最少的事拿最好的奖，但你还是愿意干实事，而不是去逃避责任。你大概觉得这没什么，可我都看在眼里。</p><p>我还喜欢你身上那点自己都没察觉的善良——做事总先想到别人，托人帮忙之前先替人想好退路。你从来不觉得这是优点，就像你也不觉得自己有多负责。</p><p>这些都不是什么大词，可就是它们，让我觉得跟你在一起特别安心。</p><p>所以今天想借这个机会说：<strong>认识你，是一件让我很开心的事。</strong>以后还会有新的难题，我也想继续陪在你身边，一起熬、一起笑、一起把问题解决掉。</p><p>新的一岁，愿你<strong>平安健康，开心顺遂</strong>。喜欢的事能慢慢做好，期待的事能渐渐实现。累的时候就歇一歇，不用一直很厉害，做自在的自己就很好。也愿你那颗总先想到别人的心，偶尔也能被人先想到。</p><p>今天记得吃一块喜欢的蛋糕，再许一个只属于自己的愿望。愿你被温柔以待，也愿我能给你的日子添一点开心。</p><p class="letter-highlight">生日快乐，妙玲。<br>你退过，我没走，这一年就这样过来了。<br>也期待，我们还有更多一起的以后。</p><p class="letter-sign">这份祝福，认真写给你。<br><span>—— 杨文宇</span></p><button class="primary-button letter-next" id="letter-next">收下祝福，去许愿 <span aria-hidden="true">→</span></button></article></dialog>
   <dialog id="celebration-dialog" aria-labelledby="celebration-title"><canvas id="fireworks" aria-hidden="true"></canvas><button class="close-dialog celebration-close" data-close="celebration-dialog" aria-label="关闭烟花祝福">×</button><div class="celebration-content"><p class="eyebrow">THIS MOMENT IS ALL YOURS</p><span class="celebration-star" aria-hidden="true">✧</span><h2 id="celebration-title">生日快乐！</h2><p class="celebration-english">Happy Birthday to you.</p><p class="celebration-message">妙玲，愿你新的一岁，<br>平安健康，开心常伴。<br>以后的路，<br>还想继续陪你一起走。</p><div class="celebration-actions"><button id="replay-fireworks" class="primary-button">再放一次烟花 <span aria-hidden="true">✦</span></button><button class="text-button" data-close="celebration-dialog">把祝福收进心里 <span aria-hidden="true">♡</span></button></div></div></dialog>
   <p id="music-status" class="sr-only" aria-live="polite"></p>
+  <dialog id="lightbox" class="lightbox" aria-label="照片大图">
+    <button class="lightbox-close" data-close="lightbox" aria-label="关闭大图">×</button>
+    <button class="lightbox-nav prev" data-nav="-1" aria-label="上一张">‹</button>
+    <button class="lightbox-nav next" data-nav="1" aria-label="下一张">›</button>
+    <figure><img id="lightbox-img" alt=""><figcaption id="lightbox-cap"></figcaption></figure>
+  </dialog>
+  <button id="to-top" class="to-top" aria-label="回到顶部">↑</button>
 <script>
 'use strict';
 const $ = (id) => document.getElementById(id);
@@ -241,7 +281,7 @@ $('blow-candles').addEventListener('click', () => {
 // Fireworks stay local and stop as soon as their dialog is closed.
 const canvas = $('fireworks');
 const ctx = canvas.getContext('2d');
-let animationFrame = 0, particles = [], bursts = [], startedAt = 0, lastFrame = 0;
+let animationFrame = 0, particles = [], bursts = [], startedAt = 0, lastFrame = 0, lastBeat = -1;
 let canvasWidth = 0, canvasHeight = 0;
 function sizeCanvas() {
   canvasWidth = celebrationDialog.clientWidth;
@@ -281,6 +321,13 @@ function drawFireworks(now) {
   const delta = Math.min((now-lastFrame)/16.67,2);lastFrame=now;
   const elapsed = now-startedAt;
   while (bursts.length && elapsed>=bursts[0].at) { const b=bursts.shift(); addBurst(canvasWidth*b.x,canvasHeight*b.y,b.shape); }
+  // when the bell melody is playing, bursts ride the beat instead of a fixed schedule
+  if (musicEnabled && musicBeat !== lastBeat) {
+    lastBeat = musicBeat;
+    const x = canvasWidth * (0.16 + Math.random() * 0.68);
+    const y = canvasHeight * (0.12 + Math.random() * 0.36);
+    addBurst(x, y, musicBeat % 8 === 0 ? 'heart' : undefined);
+  }
   // translucent wash instead of clear: leaves a short, soft trail behind each spark
   ctx.globalCompositeOperation='source-over';
   ctx.fillStyle='rgba(62,48,42,.20)';
@@ -293,7 +340,7 @@ function drawFireworks(now) {
     ctx.beginPath();ctx.arc(p.x,p.y,Math.max(.3,p.size*twinkle),0,Math.PI*2);ctx.fill();
   }
   ctx.globalAlpha=1;
-  if (particles.length || bursts.length) animationFrame=requestAnimationFrame(drawFireworks);
+  if (particles.length || bursts.length || (musicEnabled && celebrationDialog.open)) animationFrame=requestAnimationFrame(drawFireworks);
 }
 function startFireworks() {
   stopFireworks();if(!ctx)return;sizeCanvas();
@@ -302,7 +349,7 @@ function startFireworks() {
     for(let i=0;i<45;i++){ctx.globalAlpha=.2+Math.random()*.3;ctx.beginPath();ctx.arc(Math.random()*canvasWidth,Math.random()*canvasHeight,.7+Math.random(),0,Math.PI*2);ctx.fill();}
     ctx.globalAlpha=1;return;
   }
-  bursts=[{at:0,x:.18,y:.18},{at:420,x:.83,y:.24},{at:1050,x:.58,y:.10,shape:'heart'},{at:1900,x:.12,y:.48},{at:2600,x:.87,y:.53},{at:3600,x:.32,y:.17,shape:'heart'},{at:4500,x:.79,y:.13}];
+  bursts=musicEnabled?[]:[{at:0,x:.18,y:.18},{at:420,x:.83,y:.24},{at:1050,x:.58,y:.10,shape:'heart'},{at:1900,x:.12,y:.48},{at:2600,x:.87,y:.53},{at:3600,x:.32,y:.17,shape:'heart'},{at:4500,x:.79,y:.13}];
   startedAt=performance.now();lastFrame=startedAt;animationFrame=requestAnimationFrame(drawFireworks);
 }
 $('replay-fireworks').addEventListener('click',startFireworks);
@@ -311,7 +358,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)stopFirewor
 
 // A quiet original bell melody, generated on the device. It tries to start by itself;
 // if the browser blocks autoplay it begins on the visitor's first tap / scroll / key press.
-let audioContext = null, musicEnabled = false, musicTimer = null, melodyIndex = 0;
+let audioContext = null, musicEnabled = false, musicTimer = null, melodyIndex = 0, musicBeat = 0;
 let musicMutedByUser = false, gestureBound = false, musicStarting = null;
 const activeVoices = new Set();
 const melody = [[523.25,1],[659.25,1],[783.99,2],[659.25,1],[587.33,1],[523.25,2],[440,1],[523.25,1],[659.25,2],[587.33,1],[493.88,1],[392,2],[440,1],[523.25,1],[698.46,2],[659.25,1],[587.33,1],[523.25,2],[493.88,1],[587.33,1],[659.25,2],[587.33,1],[523.25,3]];
@@ -327,6 +374,7 @@ function playNextNote(){
   if(!musicEnabled || document.hidden)return;
   const [frequency,beats]=melody[melodyIndex%melody.length];melodyIndex++;
   bell(frequency,beats*.49+1.2);
+  musicBeat++;
   musicTimer=setTimeout(playNextNote,beats*540);
 }
 function stopMusicVoices(){clearTimeout(musicTimer);musicTimer=null;for(const voice of activeVoices){try{voice.stop();}catch{}}activeVoices.clear();}
@@ -367,9 +415,10 @@ function unbindMusicGestures(){
 bindMusicGestures();
 beginMusic().then(ok=>{if(ok)unbindMusicGestures();});
 $('music-toggle').addEventListener('click',async()=>{
-  if(musicEnabled){musicMutedByUser=true;musicEnabled=false;stopMusicVoices();syncMusicButton();unbindMusicGestures();return;}
+  if(musicEnabled){musicMutedByUser=true;musicEnabled=false;stopMusicVoices();syncMusicButton();unbindMusicGestures();if(celebrationDialog.open)startFireworks();return;}
   musicMutedByUser=false;
   const ok=await beginMusic();
+  if(ok&&celebrationDialog.open)startFireworks();
   if(!ok){$('music-status').textContent='音乐暂时无法播放，请稍后再试。';}
 });
 document.addEventListener('visibilitychange',()=>{
@@ -435,6 +484,72 @@ try{
 }catch(err){
   document.documentElement.classList.remove('js');
 }
+
+// --- Photo lightbox ---
+try{
+  const lb=$('lightbox'),lbImg=$('lightbox-img'),lbCap=$('lightbox-cap');
+  const figs=[...document.querySelectorAll('.gallery figure')];
+  let idx=0;
+  const openAt=(i)=>{
+    idx=(i+figs.length)%figs.length;
+    const img=figs[idx].querySelector('img');
+    const cap=figs[idx].querySelector('figcaption');
+    lbImg.src=img.currentSrc||img.src;
+    lbImg.alt=img.alt||'';
+    lbCap.textContent=cap?cap.textContent:'';
+    if(!lb.open){lb.showModal();document.body.classList.add('modal-open');}
+  };
+  figs.forEach((fig,i)=>{
+    const img=fig.querySelector('img');
+    if(!img)return;
+    img.tabIndex=0;
+    img.setAttribute('role','button');
+    img.setAttribute('aria-label','查看大图：'+(img.alt||'照片'));
+    img.addEventListener('click',()=>openAt(i));
+    img.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openAt(i);}});
+  });
+  lb.querySelectorAll('[data-nav]').forEach(btn=>{
+    btn.addEventListener('click',()=>openAt(idx+Number(btn.dataset.nav)));
+  });
+  lb.addEventListener('click',(e)=>{if(e.target===lb)lb.close();});
+  lb.addEventListener('close',()=>document.body.classList.remove('modal-open'));
+  lb.addEventListener('keydown',(e)=>{
+    if(e.key==='ArrowLeft')openAt(idx-1);
+    if(e.key==='ArrowRight')openAt(idx+1);
+  });
+  let sx=0,sy=0;
+  lb.addEventListener('touchstart',(e)=>{const t=e.changedTouches[0];sx=t.clientX;sy=t.clientY;},{passive:true});
+  lb.addEventListener('touchend',(e)=>{
+    const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
+    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy))openAt(idx+(dx<0?1:-1));
+  },{passive:true});
+}catch(err){}
+
+// --- Story spine + back to top ---
+try{
+  const list=document.querySelector('.story-moments');
+  const toTop=$('to-top');
+  let raf=0;
+  const update=()=>{
+    raf=0;
+    if(list){
+      const r=list.getBoundingClientRect();
+      const vh=window.innerHeight||800;
+      const start=vh*.82;
+      const span=Math.max(1,r.height+start-vh*.32);
+      const p=Math.min(1,Math.max(0,(start-r.top)/span));
+      list.style.setProperty('--story-progress',p.toFixed(3));
+    }
+    if(toTop)toTop.classList.toggle('show',window.scrollY>700);
+  };
+  const onScroll=()=>{if(!raf)raf=requestAnimationFrame(update);};
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  update();
+  if(toTop)toTop.addEventListener('click',()=>{
+    window.scrollTo({top:0,behavior:reducedMotion.matches?'auto':'smooth'});
+  });
+}catch(err){}
 
 window.addEventListener('pagehide',()=>{stopMusicVoices();stopFireworks();});
 
