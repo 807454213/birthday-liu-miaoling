@@ -58,6 +58,11 @@
 .js .gallery img{opacity:0;transition:opacity .8s ease}
 .js .gallery img.loaded{opacity:1}
 
+/* letter as a page section */
+.letter-section{max-width:760px;margin:auto;padding:96px 24px 10px;scroll-margin-top:24px}
+.letter-sheet{background:#fffdf8;border:1px solid #e5d8c5;border-radius:10px;box-shadow:0 26px 80px #39261b12;overflow:hidden}
+@media(max-width:700px){.letter-section{padding:58px 16px 0;scroll-margin-top:12px}.letter-sheet{border-radius:8px}}
+
 /* story spine: a hairline that draws itself as you read */
 .story-moments{position:relative}
 .story-moments::before{content:"";position:absolute;left:-20px;top:6px;bottom:8px;width:1px;
@@ -192,6 +197,11 @@
         <p class="confession-last">我不是不在意。我只是笨，也怕。</p>
       </div>
     </section>
+    <section class="letter-section" id="letter" aria-labelledby="letter-title">
+      <div class="letter-sheet">
+<article class="letter-content"><p class="eyebrow">A LETTER FOR YOU</p><h2 id="letter-title">妙玲：</h2><p class="letter-salute">生日快乐呀！</p><p>想给你的生日添一点特别，所以悄悄准备了这份小惊喜。希望你打开它的时候，可以收获一个好心情。</p><p>第一次认识你，是在智能车实验室的前期验收。你来问我一些验收里的问题，后来，我们慢慢熟络起来，我对你的初印象就是一个单纯，学习好，听话懂事的好女孩，在慢慢相处过程中，我开始有点喜欢上你，喜欢上你的纯真，你的善良，让我很想保护你，一直陪伴你。</p><p>备赛的日子不轻松。压力大的时候我们都烦躁，也吵过架，说过现在想起来很后悔的话。但让我记得最清楚的，不是那些争吵，而是吵完之后，我们没有丢下责任，而是一起去想解决方法。</p><p>你总是觉得我不听你的话，其实我背地里也经常反复思考你给我的建议，只是很多次我没有说。我总是有点自负和敏感，不敢表达自己的感情，造成了很多误会。</p><p>驱动板炸了的那个晚上，幸好我在。</p><p>也有很好的时候。我们也会像普通朋友那样，吃饭、看电影、玩星露谷。这样的日子，是我这一年最喜欢的部分。</p><p>完模组里有人开始松劲、有人想做最少的事拿最好的奖，但你还是愿意干实事，而不是去逃避责任。你大概觉得这没什么，可我都看在眼里。</p><p>我还喜欢你身上那点自己都没察觉的善良——做事总先想到别人，托人帮忙之前先替人想好退路。你从来不觉得这是优点，就像你也不觉得自己有多负责。</p><p>这些都不是什么大词，可就是它们，让我觉得跟你在一起特别安心。</p><p>所以今天想借这个机会说：<strong>认识你，是一件让我很开心的事。</strong>以后还会有新的难题，我也想继续陪在你身边，一起熬、一起笑、一起把问题解决掉。</p><p>新的一岁，愿你<strong>平安健康，开心顺遂</strong>。喜欢的事能慢慢做好，期待的事能渐渐实现。累的时候就歇一歇，不用一直很厉害，做自在的自己就很好。也愿你那颗总先想到别人的心，偶尔也能被人先想到。</p><p>今天记得吃一块喜欢的蛋糕，再许一个只属于自己的愿望。愿你被温柔以待，也愿我能给你的日子添一点开心。</p><p class="letter-highlight">生日快乐，妙玲。<br>你退过，我没走，这一年就这样过来了。<br>也期待，我们还有更多一起的以后。</p><p class="letter-sign">这份祝福，认真写给你。<br><span>—— 杨文宇</span></p><button class="primary-button letter-next" id="letter-next">收下祝福，去许愿 <span aria-hidden="true">→</span></button></article>
+      </div>
+    </section>
     <section class="wish-section" id="wish" aria-labelledby="wish-title">
       <div class="wish-copy"><p class="eyebrow">MAKE A LITTLE WISH</p><h2 id="wish-title">把愿望，<br>轻轻交给烛光。</h2><p>先闭上眼睛，在心里许一个愿。<br>不用告诉任何人，就让它悄悄发芽。</p><p class="handwritten">may all your wishes come true</p></div>
       <div class="cake-experience">
@@ -216,7 +226,6 @@
     <section class="closing"><span class="closing-star" aria-hidden="true">✳</span><p>不必每一天都闪闪发光，<br><em>但愿每一天，都有让你微笑的理由。</em></p><span class="closing-small">新的一岁，也要好好爱自己。</span><button id="reread" class="text-button">再读一次生日信 <span aria-hidden="true">↗</span></button></section>
   </main>
   <footer><span>WITH A LITTLE LOVE & A BIG WISH</span><span>杨文宇 → 刘妙玲 · 一份小小的偏爱</span></footer>
-  <dialog id="letter-dialog" aria-labelledby="letter-title"><button class="close-dialog" data-close="letter-dialog" aria-label="关闭生日信">×</button><article class="letter-content"><p class="eyebrow">A LETTER FOR YOU</p><h2 id="letter-title">妙玲：</h2><p class="letter-salute">生日快乐呀！</p><p>想给你的生日添一点特别，所以悄悄准备了这份小惊喜。希望你打开它的时候，可以收获一个好心情。</p><p>第一次认识你，是在智能车实验室的前期验收。你来问我一些验收里的问题，后来，我们慢慢熟络起来，我对你的初印象就是一个单纯，学习好，听话懂事的好女孩，在慢慢相处过程中，我开始有点喜欢上你，喜欢上你的纯真，你的善良，让我很想保护你，一直陪伴你。</p><p>备赛的日子不轻松。压力大的时候我们都烦躁，也吵过架，说过现在想起来很后悔的话。但让我记得最清楚的，不是那些争吵，而是吵完之后，我们没有丢下责任，而是一起去想解决方法。</p><p>你总是觉得我不听你的话，其实我背地里也经常反复思考你给我的建议，只是很多次我没有说。我总是有点自负和敏感，不敢表达自己的感情，造成了很多误会。</p><p>驱动板炸了的那个晚上，幸好我在。</p><p>也有很好的时候。我们也会像普通朋友那样，吃饭、看电影、玩星露谷。这样的日子，是我这一年最喜欢的部分。</p><p>完模组里有人开始松劲、有人想做最少的事拿最好的奖，但你还是愿意干实事，而不是去逃避责任。你大概觉得这没什么，可我都看在眼里。</p><p>我还喜欢你身上那点自己都没察觉的善良——做事总先想到别人，托人帮忙之前先替人想好退路。你从来不觉得这是优点，就像你也不觉得自己有多负责。</p><p>这些都不是什么大词，可就是它们，让我觉得跟你在一起特别安心。</p><p>所以今天想借这个机会说：<strong>认识你，是一件让我很开心的事。</strong>以后还会有新的难题，我也想继续陪在你身边，一起熬、一起笑、一起把问题解决掉。</p><p>新的一岁，愿你<strong>平安健康，开心顺遂</strong>。喜欢的事能慢慢做好，期待的事能渐渐实现。累的时候就歇一歇，不用一直很厉害，做自在的自己就很好。也愿你那颗总先想到别人的心，偶尔也能被人先想到。</p><p>今天记得吃一块喜欢的蛋糕，再许一个只属于自己的愿望。愿你被温柔以待，也愿我能给你的日子添一点开心。</p><p class="letter-highlight">生日快乐，妙玲。<br>你退过，我没走，这一年就这样过来了。<br>也期待，我们还有更多一起的以后。</p><p class="letter-sign">这份祝福，认真写给你。<br><span>—— 杨文宇</span></p><button class="primary-button letter-next" id="letter-next">收下祝福，去许愿 <span aria-hidden="true">→</span></button></article></dialog>
   <dialog id="celebration-dialog" aria-labelledby="celebration-title"><canvas id="fireworks" aria-hidden="true"></canvas><button class="close-dialog celebration-close" data-close="celebration-dialog" aria-label="关闭烟花祝福">×</button><div class="celebration-content"><p class="eyebrow">THIS MOMENT IS ALL YOURS</p><span class="celebration-star" aria-hidden="true">✧</span><h2 id="celebration-title">生日快乐！</h2><p class="celebration-english">Happy Birthday to you.</p><p class="celebration-message">妙玲，愿你新的一岁，<br>平安健康，开心常伴。<br>以后的路，<br>还想继续陪你一起走。</p><div class="celebration-actions"><button id="replay-fireworks" class="primary-button">再放一次烟花 <span aria-hidden="true">✦</span></button><button class="text-button" data-close="celebration-dialog">把祝福收进心里 <span aria-hidden="true">♡</span></button></div></div></dialog>
   <p id="music-status" class="sr-only" aria-live="polite"></p>
   <dialog id="lightbox" class="lightbox" aria-label="照片大图">
@@ -230,7 +239,6 @@
 'use strict';
 const $ = (id) => document.getElementById(id);
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const letterDialog = $('letter-dialog');
 const celebrationDialog = $('celebration-dialog');
 let priorFocus = null;
 function showDialog(dialog) {
@@ -240,9 +248,11 @@ function showDialog(dialog) {
   document.body.classList.add('modal-open');
 }
 function closeDialog(dialog) { dialog.close(); }
-for (const id of ['open-letter', 'envelope', 'reread']) $(id).addEventListener('click', () => showDialog(letterDialog));
+const letterSection = $('letter');
+const goLetter = () => letterSection.scrollIntoView({behavior: reducedMotion.matches ? 'instant' : 'smooth', block: 'start'});
+for (const id of ['open-letter', 'envelope', 'reread']) $(id).addEventListener('click', goLetter);
 document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => closeDialog($(button.dataset.close))));
-for (const dialog of [letterDialog, celebrationDialog]) {
+for (const dialog of [celebrationDialog]) {
   dialog.addEventListener('click', (event) => {
     if (event.target !== dialog) return;
     const box = dialog.getBoundingClientRect();
@@ -255,9 +265,8 @@ for (const dialog of [letterDialog, celebrationDialog]) {
   });
 }
 $('letter-next').addEventListener('click', () => {
-  closeDialog(letterDialog);
   $('wish').scrollIntoView({behavior:reducedMotion.matches ? 'instant' : 'smooth',block:'start'});
-  $('blow-candles').focus({preventScroll:true});
+  setTimeout(()=>$('blow-candles').focus({preventScroll:true}),450);
 });
 let candlesOut = false;
 let celebrationTimer;
@@ -462,7 +471,7 @@ function candleBurst(){
 
 try{
   document.documentElement.classList.add('js');
-  const targets=[...document.querySelectorAll('.little-wishes,.our-story,.moments-head,.confession,.wish-section,.closing')];
+  const targets=[...document.querySelectorAll('.little-wishes,.our-story,.moments-head,.confession,.letter-section,.wish-section,.closing')];
   targets.push(...document.querySelectorAll('.story-moments li'));
   targets.push(...document.querySelectorAll('.gallery figure'));
   if('IntersectionObserver' in window){
