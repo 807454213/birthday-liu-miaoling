@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -58,8 +58,6 @@
 .js .gallery img{opacity:0;transition:opacity .8s ease}
 .js .gallery img.loaded{opacity:1}
 
-}
-
 /* story spine: a hairline that draws itself as you read */
 .story-moments{position:relative}
 .story-moments::before{content:"";position:absolute;left:-20px;top:6px;bottom:8px;width:1px;
@@ -117,6 +115,169 @@
   .js .gallery img{opacity:1!important}
 }
 
+/* Refinements to the original paper, letter and photo-album design. */
+:root{--paper:#f8f3eb;--ink:#473c32;--muted:#75695c;--border:#e1d6c7}
+html{scroll-padding-top:32px}
+body{overflow-wrap:break-word}
+.site-header{max-width:1220px;padding:25px 40px;gap:24px}
+.site-nav{display:flex;align-items:center;gap:26px;margin-left:auto;margin-right:26px;font-size:12px;color:var(--muted)}
+.site-nav a{padding:12px 0;transition:color .2s}
+.site-nav a:hover{color:var(--red)}
+.music-toggle{min-height:44px;background:#fffaf380;white-space:nowrap}
+.hero{max-width:1160px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;min-height:660px;padding:64px 40px 100px;overflow:clip}
+.hero-copy,.hero-art{min-width:0}
+.hero .eyebrow{margin-bottom:24px}
+h1{font-size:clamp(42px,4.5vw,57px);line-height:1.5;letter-spacing:2px}
+.title-spark{left:auto;right:12px;bottom:17px;width:30px}
+.hero-description{font-size:15px;line-height:2.05;margin-bottom:28px}
+.primary-button{border-radius:3px;padding:16px 25px;box-shadow:0 5px 16px #8b4a3017}
+.small-note{font-size:12px;color:#857563;margin-top:17px}
+.hero-art{height:440px;transform:none;animation:drift 7.5s ease-in-out infinite alternate}
+.art-orbit{background:#eee5d6b0}
+.art-caption{font-size:11px;color:#81715e;bottom:0;left:0;width:100%;line-height:1.8}
+.little-wishes{max-width:1080px;padding:23px 15px}
+.little-wishes p{font-size:13px;color:#766654;gap:12px}
+.wish-section{max-width:1080px;padding:100px 40px 85px;gap:80px}
+.wish-copy h2,.story-heading h2,.moments-head h2,.confession h2{font-size:36px;line-height:1.65;letter-spacing:1.5px}
+.wish-copy>p:not(.eyebrow):not(.handwritten){font-size:14px;line-height:2.15}
+.handwritten{color:#987557}
+.cake-experience{padding:25px 0 20px;background:radial-gradient(ellipse at 50% 38%,#eecfae30,transparent 70%)}
+.cake-caption{font-size:12px;line-height:1.9;color:#81715e}
+.our-story{max-width:1080px;padding:90px 40px 20px;gap:80px;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);border-top:1px solid var(--border)}
+.story-heading{position:sticky;top:55px}
+.story-heading>p:last-child{font-size:14px;line-height:2.1}
+.story-moments li{gap:20px;padding-bottom:30px}
+.story-moments li+li{padding-top:30px}
+.story-moments h3{font-size:23px;margin-bottom:13px}
+.story-moments p:last-child{font-size:14px;line-height:2.15}
+.story-moments .story-place{font-size:11px;letter-spacing:.8px;color:#8e684c}
+.story-number{font-size:24px;color:#a67d5c}
+.story-moments::before{left:-18px;background:linear-gradient(#d9c6ae,#b48c66 30%,#b48c66 75%,transparent)}
+.moments{max-width:1080px;padding:80px 40px 45px}
+.moments-head{margin-bottom:38px;align-items:flex-end}
+.moments-intro{font-size:13px;line-height:2;max-width:280px;color:var(--muted)}
+.gallery{column-gap:24px}
+.gallery figure{padding:10px 10px 14px;background:#fffcf6;border:1px solid #e8ded0;margin-bottom:24px;box-shadow:0 5px 18px #69513b09;border-radius:2px}
+.gallery img{border-radius:1px;box-shadow:none}
+.gallery figcaption{font-size:12px;line-height:1.95;margin:12px 4px 0;color:#756759}
+.confession{max-width:740px;padding:85px 40px 75px}
+.confession h2{margin-bottom:28px}
+.confession-body{font-size:15px;line-height:2.15;text-align:left}
+.confession-body p{margin-bottom:20px}
+.confession-last{font-size:20px;text-align:center;color:var(--red);padding:14px 0 0}
+.closing{max-width:1000px;padding:58px 20px 50px}
+.closing>p{font-size:24px}
+.closing-small{font-size:12px;color:#81715e}
+footer{max-width:1000px;font-size:10px;color:#81715e;padding-bottom:30px}
+dialog{border-radius:5px;max-width:640px;scrollbar-width:thin;scrollbar-color:#c8ad92 transparent}
+.letter-content{padding:52px 50px 38px;background:linear-gradient(90deg,transparent 30px,#d7b9a112 31px,transparent 32px)}
+.letter-content>p:not(.eyebrow){font-size:15px;line-height:2.2;color:#6f5e4d;margin:20px 0}
+.letter-highlight{background:#ede0cc35;padding:14px 18px;border-left:2px solid #b88760}
+.letter-content .letter-sign{padding-top:25px}
+.close-dialog,.lightbox-close,.lightbox-nav{min-width:44px;min-height:44px}
+.lightbox figure{padding:64px 62px 30px}
+.lightbox img{max-width:min(1080px,calc(100vw - 124px));max-height:72dvh;border-radius:2px}
+.lightbox figcaption{font-size:14px;max-width:680px;line-height:1.9}
+.lightbox-nav.prev{left:12px}.lightbox-nav.next{right:12px}
+@media(min-width:1300px){.hero{min-height:690px;padding-top:70px;padding-bottom:110px}.hero-art{transform:none}}
+@media(max-width:1050px){
+  .site-header{padding:22px 32px}.site-nav{gap:19px;margin-right:8px}
+  .hero{padding-left:36px;padding-right:36px;gap:24px}
+  h1{font-size:44px}.title-spark{right:0;width:25px}
+  .hero-art{transform:scale(.9);transform-origin:center}
+  .little-wishes,.closing,footer{margin-left:36px;margin-right:36px}
+  .wish-section,.our-story{gap:50px}.gallery{columns:2}
+}
+@media(max-width:800px){
+  .site-nav{display:none}
+  .hero{display:flex;flex-direction:column;gap:0;min-height:0;padding:36px 26px 68px;overflow:hidden}
+  .hero-copy{align-self:stretch;text-align:center}
+  .hero .eyebrow{justify-content:center;font-size:9px;margin-bottom:22px}
+  h1{display:inline-block;text-align:center;font-size:42px;line-height:1.5;letter-spacing:2px;margin-bottom:22px}
+  .title-spark{right:-34px;bottom:11px;width:25px}
+  .hero-description{font-size:14px;line-height:2;margin-bottom:24px}
+  .hero-art{width:100%;max-width:420px;height:400px;transform:none;margin:45px auto 0}
+  .scroll-hint{bottom:9px;gap:5px;font-size:10px}
+  .little-wishes{margin:0 26px;padding:20px 0;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 24px}
+  .little-wishes p{font-size:12px;letter-spacing:.3px;gap:8px}.wish-divider{display:none}
+  .wish-section{grid-template-columns:1fr;gap:20px;text-align:center;padding:65px 30px 55px}
+  .wish-copy .eyebrow{justify-content:center}
+  .wish-copy h2,.story-heading h2,.moments-head h2,.confession h2{font-size:32px}
+  .cake-experience svg{max-width:365px}.cake-experience{padding:8px 0}
+  .our-story{display:block;padding:60px 34px 10px;margin:0 26px}
+  .story-heading{position:static;text-align:center}.story-heading .eyebrow{justify-content:center}
+  .story-moments{margin-top:38px}
+  .story-moments li{grid-template-columns:28px minmax(0,1fr);gap:16px}
+  .story-moments h3{font-size:22px}.story-moments p:last-child{font-size:14px}
+  .story-moments::before{left:-12px}
+  .moments{padding:58px 26px 30px}
+  .moments-head{display:block;margin-bottom:26px}.moments-head .eyebrow{justify-content:flex-start}
+  .moments-intro{text-align:left;margin-top:18px;max-width:none;font-size:13px}
+  .gallery{columns:2;column-gap:16px}.gallery figure{margin-bottom:16px;padding:8px 8px 12px}
+  .gallery figcaption{font-size:12px;line-height:1.95;margin:10px 3px 0}
+  .confession{padding:58px 30px 45px}.confession .eyebrow{font-size:9px}
+  .confession-body{font-size:14px}.confession-last{font-size:18px}
+  .closing{margin:0 26px;padding:42px 0 30px}.closing>p{font-size:20px;line-height:2;letter-spacing:0}
+  footer{margin:0 26px;flex-direction:column;align-items:center;gap:10px;font-size:9px}
+  .letter-content{padding:49px 28px 30px}.letter-content>p:not(.eyebrow){font-size:14px;line-height:2.15}
+}
+@media(max-width:560px){
+  .site-header{padding:20px 22px;gap:12px}.wordmark{font-size:13px;letter-spacing:1px}
+  .music-toggle{font-size:11px;min-height:44px;padding:9px 12px}
+  .hero{padding:30px 24px 64px}h1{font-size:clamp(31px,8.8vw,38px);letter-spacing:1.5px}
+  .hero-art{height:345px;max-width:350px;margin-top:35px}
+  .art-orbit{width:290px;height:290px;top:6px}.envelope{width:270px;height:203px;margin:52px 0 0}
+  .letter-peek{height:216px;top:-58px;padding-top:15px}.envelope:hover .letter-peek{top:-68px}
+  .peek-heading{font-size:27px;margin-top:12px}.peek-small{font-size:6px;letter-spacing:2px}
+  .seal{top:76px;left:calc(50% - 22px);width:44px;height:44px}
+  .flower-one{width:79px;height:104px;top:-3px;right:-3px}.flower-two{width:76px;height:105px;bottom:19px;left:-10px}
+  .gift-note{font-size:12px;left:40px;top:-4px}.spark-one{left:4px;top:23px;font-size:22px}.spark-two{right:0;bottom:57px;font-size:31px}
+  .art-caption{font-size:10px;bottom:0}.small-note{font-size:11px}
+  .hero-copy .primary-button,.wish-button{font-size:13px;min-height:50px}
+  .little-wishes{gap:10px 20px}.little-wishes p{font-size:12px}.little-wishes p>span{font-size:20px}
+  .wish-copy h2,.story-heading h2,.moments-head h2,.confession h2{font-size:29px}
+  .our-story{padding-left:12px;padding-right:4px}
+  .gallery{columns:1}.gallery figure{padding:10px 10px 15px;margin-bottom:23px}
+  .gallery img{max-height:440px;object-fit:contain;background:#eee7dc}
+  .gallery figcaption{font-size:13px;margin:12px 5px 0}
+  .letter-content{padding-left:24px;padding-right:24px}
+  .lightbox figure{padding:65px 14px 80px}.lightbox img{max-width:calc(100vw - 28px);max-height:68dvh}
+  .lightbox figcaption{font-size:13px;padding:0 9px}
+  .lightbox-nav{top:auto;bottom:15px;transform:none}.lightbox-nav.prev{left:calc(50% - 58px)}.lightbox-nav.next{right:calc(50% - 58px)}
+  .closing>p{font-size:18px}.confession-last{font-size:17px}
+}
+@media(max-width:360px){.hero-art{transform:scale(.93);transform-origin:center top;margin-bottom:-20px}.hero{padding-left:20px;padding-right:20px}.title-spark{right:-24px;width:20px}.little-wishes p{font-size:11px}}
+.music-hint{display:block;font-size:11px;line-height:1.9;color:#857563;margin-top:8px}
+.future{max-width:1080px;margin:0 auto;padding:65px 40px 90px;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:80px;align-items:start}
+.future h2{font-family:var(--serif);font-size:36px;line-height:1.65;letter-spacing:1.5px;font-weight:400;margin:0 0 24px}
+.future-intro{font-size:14px;line-height:2.15;color:var(--muted);margin:0}
+.future-list{min-width:0;border:1px solid var(--border);padding:26px 28px 20px;margin:0;background:#fffbf4;box-shadow:5px 6px 0 #e8ddcc55}
+.future-list legend{padding:0 10px;font-family:Georgia,serif;font-size:11px;letter-spacing:2px;color:#927356}
+.future-item{display:grid;grid-template-columns:22px minmax(0,1fr);gap:16px;padding:22px 0;cursor:pointer}
+.future-item+.future-item{border-top:1px solid #e9dfd1}
+.future-item input{appearance:none;margin:5px 0 0;width:21px;height:21px;border:1px solid #bca58e;border-radius:2px;background:transparent;cursor:pointer;display:grid;place-items:center}
+.future-item input:checked{background:#a95541;border-color:#a95541}
+.future-item input:checked::after{content:"";width:9px;height:5px;border-left:2px solid #fff8ec;border-bottom:2px solid #fff8ec;transform:translateY(-1px) rotate(-45deg)}
+.future-item input:focus-visible{outline:3px solid #8c9c78;outline-offset:5px}
+.future-item strong{display:block;font-family:var(--serif);font-size:21px;font-weight:400;line-height:1.7}
+.future-item small{display:block;margin-top:7px;font-size:13px;line-height:2;color:var(--muted)}
+.future-item:has(input:checked) strong{color:var(--red)}
+.future-status{font-size:12px;color:#967557;line-height:1.9;padding-top:16px;margin:0;border-top:1px solid var(--border)}
+.last-surprise{max-width:780px;margin:10px auto 55px;padding:0 28px;text-align:center}
+.secret-toggle{display:inline-flex;align-items:center;justify-content:center;gap:15px;min-height:52px;border:1px dashed #bda48a;border-radius:3px;background:#fff9ef;padding:14px 24px;color:#8f6046;font-size:13px;line-height:1.8;letter-spacing:.5px}
+.secret-icon{font-family:Georgia,serif;font-size:23px;line-height:1}
+.secret-toggle:hover{background:#f3e7d5}
+.secret-note{position:relative;max-width:540px;margin:30px auto 0;padding:42px 35px 35px;background:#fffcf5;border:1px solid #e5d8c5;box-shadow:0 9px 30px #69513b0b}
+.secret-note[hidden]{display:none}
+.secret-note::before{content:"";position:absolute;top:-10px;left:calc(50% - 38px);width:76px;height:22px;background:#dfc8a780;transform:rotate(-4deg)}
+.secret-note .eyebrow{justify-content:center;margin-bottom:20px;font-size:9px}
+.secret-note h3{font-family:var(--serif);font-size:25px;line-height:1.8;font-weight:400;letter-spacing:1px;margin:0 0 20px;color:var(--red)}
+.secret-note>p:not(.eyebrow){font-size:14px;line-height:2.2;color:var(--muted);margin:0 0 18px}
+.secret-note .secret-sign{font-family:var(--serif);color:#957254!important;font-size:13px!important;margin:24px 0 0!important}
+.secret-note.is-revealed{animation:arrive .55s ease-out both}
+@media(max-width:1050px){.future{gap:50px}}
+@media(max-width:800px){.future{grid-template-columns:1fr;padding:45px 30px 60px;gap:32px;max-width:650px}.future-heading{text-align:center}.future-heading .eyebrow{justify-content:center}.future h2{font-size:32px}.future-list{padding:20px 25px 18px}.last-surprise{margin-bottom:40px}.music-hint{font-size:10px}}
+@media(max-width:560px){.future{padding:38px 26px 55px}.future h2{font-size:29px}.future-intro{font-size:13px}.future-list{padding:17px 20px 18px}.future-item{gap:13px;padding:20px 0}.future-item strong{font-size:20px}.future-item small{font-size:13px}.secret-toggle{padding:13px 17px;font-size:12px;gap:12px}.secret-note{padding:38px 23px 28px}.secret-note h3{font-size:23px}.secret-note>p:not(.eyebrow){font-size:13px}}
 </style>
   
 </head>
@@ -124,6 +285,7 @@
   <a class="skip-link" href="#main">跳到生日祝福</a>
   <header class="site-header">
     <a class="wordmark" href="#main" aria-label="回到生日祝福首页"><span class="brand-star" aria-hidden="true">✳</span> 给今天的你<span class="wordmark-dot">.</span></a>
+    <nav class="site-nav" aria-label="页面章节"><a href="#wish">小小心愿</a><a href="#our-story">一起走过</a><a href="#moments">珍藏瞬间</a><a href="#future">未来小事</a></nav>
     <button id="music-toggle" class="music-toggle" aria-pressed="false"><span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="music-label">开启音乐</span></button>
   </header>
   <main id="main">
@@ -134,6 +296,7 @@
         <p class="hero-description">妙玲，生日快乐。<br>这一年过得不容易，<br>剩下的路，我还想陪你走。</p>
         <button class="primary-button" id="open-letter">拆开这份祝福 <span aria-hidden="true">↗</span></button>
         <p class="small-note">慢慢来，今天的快乐属于你。</p>
+        <span class="music-hint" id="music-hint">轻点拆信，也让音乐陪你慢慢读。</span>
       </div>
       <div class="hero-art">
         <div class="art-orbit" aria-hidden="true"></div>
@@ -180,7 +343,7 @@
         <p class="cake-caption" id="cake-caption" aria-live="polite">点一下，就把这个愿望送向未来。</p>
       </div>
     </section>
-    <section class="our-story" aria-labelledby="story-title">
+    <section class="our-story" id="our-story" aria-labelledby="story-title">
       <div class="story-heading"><p class="eyebrow">SO GLAD WE MET</p><h2 id="story-title">这一年，<br>一起走过来了。</h2><p>有些日子真的很难熬，<br>但我们还是熬过来了。</p></div>
       <ol class="story-moments">
         <li><span class="story-number" aria-hidden="true">01</span><div><p class="story-place">智能车实验室 · 前期验收</p><h3>从一次交谈开始</h3><p>那次前期验收，你来问我一些不太明白的问题，我们就这样认识了。很普通的一个开始，后来我们一起走了很久。</p></div></li>
@@ -190,7 +353,7 @@
         <li><span class="story-number" aria-hidden="true">05</span><div><p class="story-place">赛场之外 · 吃饭、电影、游戏</p><h3>不只是队友</h3><p>我们也会一起吃饭、看电影、玩星露谷，这些普通得不能再普通的日子，其实是这一年里我最喜欢的部分。</p></div></li>
       </ol>
     </section>
-    <section class="moments" aria-labelledby="moments-title">
+    <section class="moments" id="moments" aria-labelledby="moments-title">
       <div class="moments-head">
         <div><p class="eyebrow">LITTLE MOMENTS, KEPT</p><h2 id="moments-title">这些，<br>都是舍不得删的照片。</h2></div>
         <p class="moments-intro">没有一张是摆拍的。<br>但每一张里，我都正好在你旁边。</p>
@@ -217,7 +380,21 @@
     </section>
     
     
+    <section class="future" id="future" aria-labelledby="future-title">
+      <div class="future-heading"><p class="eyebrow">A FEW LITTLE TOMORROWS</p><h2 id="future-title">以后的日子，<br>还想和你一起。</h2><p class="future-intro">把这些小小的期待，先写在这里。<br>等日子慢下来，我们一件一件去实现。</p><p class="handwritten">to be continued, with you</p></div>
+      <fieldset class="future-list"><legend>OUR LITTLE WISH LIST</legend>
+        <label class="future-item"><input type="checkbox" name="future-wish" value="sunset"><span><strong>再看一次晚霞</strong><small>找一个不用赶路的傍晚，慢慢等天色变温柔。</small></span></label>
+        <label class="future-item"><input type="checkbox" name="future-wish" value="dinner"><span><strong>好好吃一顿饭</strong><small>忙完之后，把喜欢的菜都点一遍。</small></span></label>
+        <label class="future-item"><input type="checkbox" name="future-wish" value="game"><span><strong>再开一局星露谷</strong><small>种点东西，聊点小事，把普通的一天过得开心。</small></span></label>
+        <label class="future-item"><input type="checkbox" name="future-wish" value="movie"><span><strong>再看一场电影</strong><small>挑一部喜欢的电影，一起看到片尾字幕。</small></span></label>
+        <p class="future-status" id="future-status" aria-live="polite">勾选你也期待的小事。</p>
+      </fieldset>
+    </section>
     <section class="closing"><span class="closing-star" aria-hidden="true">✳</span><p>不必每一天都闪闪发光，<br><em>但愿每一天，都有让你微笑的理由。</em></p><span class="closing-small">新的一岁，也要好好爱自己。</span><button id="reread" class="text-button">再读一次生日信 <span aria-hidden="true">↗</span></button></section>
+    <section class="last-surprise" aria-label="最后的小彩蛋">
+      <button class="secret-toggle" id="secret-toggle" aria-expanded="false" aria-controls="secret-note"><span class="secret-icon" aria-hidden="true">♡</span><span id="secret-label">最后，还有一句话想对你说</span><span aria-hidden="true">＋</span></button>
+      <div class="secret-note" id="secret-note" hidden><p class="eyebrow">P.S. JUST FOR YOU</p><h3>下一次晚霞，<br>也想和你一起看。</h3><p>写到这里，还是觉得有很多话没说完。<br>那就留给以后吧，留给下一顿饭、<br>下一局游戏，还有下一次见面。</p><p>今天的最后一句，还是想说：<br>生日快乐，妙玲。认识你，真好。</p><p class="secret-sign">—— 杨文宇，认真写给你</p></div>
+    </section>
   </main>
   <footer><span>WITH A LITTLE LOVE & A BIG WISH</span><span>杨文宇 → 刘妙玲 · 一份小小的偏爱</span></footer>
     <dialog id="letter-dialog" aria-labelledby="letter-title"><button class="close-dialog" data-close="letter-dialog" aria-label="关闭生日信">×</button><article class="letter-content"><p class="eyebrow">A LETTER FOR YOU</p><h2 id="letter-title">妙玲：</h2><p class="letter-salute">生日快乐呀！</p><p>想给你的生日添一点特别，所以悄悄准备了这份小惊喜。希望你打开它的时候，可以收获一个好心情。</p><p>第一次认识你，是在智能车实验室的前期验收。你来问我一些验收里的问题，后来，我们慢慢熟络起来，我对你的初印象就是一个单纯，学习好，听话懂事的好女孩，在慢慢相处过程中，我开始有点喜欢上你，喜欢上你的纯真，你的善良，让我很想保护你，一直陪伴你。</p><p>备赛的日子不轻松。压力大的时候我们都烦躁，也吵过架，说过现在想起来很后悔的话。但让我记得最清楚的，不是那些争吵，而是吵完之后，我们没有丢下责任，而是一起去想解决方法。</p><p>你总是觉得我不听你的话，其实我背地里也经常反复思考你给我的建议，只是很多次我没有说。我总是有点自负和敏感，不敢表达自己的感情，造成了很多误会。</p><p>也有很好的时候。我们也会像普通朋友那样，吃饭、看电影、玩星露谷。这样的日子，是我这一年最喜欢的部分。</p><p>完模组里有人开始松劲、有人想做最少的事拿最好的奖，但你还是愿意干实事，而不是去逃避责任。你大概觉得这没什么，可我都看在眼里。</p><p>我还喜欢你身上那点自己都没察觉的善良——做事总先想到别人，托人帮忙之前先替人想好退路。你从来不觉得这是优点，就像你也不觉得自己有多负责。</p><p>这些都不是什么大词，可就是它们，让我觉得跟你在一起特别安心。</p><p>所以今天想借这个机会说：<strong>认识你，是一件让我很开心的事。</strong>以后还会有新的难题，我也想继续陪在你身边，一起熬、一起笑、一起把问题解决掉。</p><p>新的一岁，愿你<strong>平安健康，开心顺遂</strong>。喜欢的事能慢慢做好，期待的事能渐渐实现。累的时候就歇一歇，不用一直很厉害，做自在的自己就很好。也愿你那颗总先想到别人的心，偶尔也能被人先想到。</p><p>今天记得吃一块喜欢的蛋糕，再许一个只属于自己的愿望。愿你被温柔以待，也愿我能给你的日子添一点开心。</p><p class="letter-highlight">生日快乐，妙玲。<br>你退过，我没走，这一年就这样过来了。<br>也期待，我们还有更多一起的以后。</p><p class="letter-sign">这份祝福，认真写给你。<br><span>—— 杨文宇</span></p><button class="primary-button letter-next" id="letter-next">收下祝福，去许愿 <span aria-hidden="true">→</span></button></article></dialog>
@@ -360,8 +537,8 @@ $('replay-fireworks').addEventListener('click',startFireworks);
 window.addEventListener('resize',()=>{if(celebrationDialog.open)sizeCanvas();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stopFireworks();else if(celebrationDialog.open)startFireworks();});
 
-// A quiet original bell melody, generated on the device. It tries to start by itself;
-// if the browser blocks autoplay it begins on the visitor's first tap / scroll / key press.
+// Start the original bell melody within a click or keyboard activation.
+// Creating/resuming audio at page load can leave it suspended by autoplay policy.
 let audioContext = null, musicEnabled = false, musicTimer = null, melodyIndex = 0, musicBeat = 0;
 let musicMutedByUser = false, gestureBound = false, musicStarting = null;
 const activeVoices = new Set();
@@ -383,47 +560,53 @@ function playNextNote(){
 }
 function stopMusicVoices(){clearTimeout(musicTimer);musicTimer=null;for(const voice of activeVoices){try{voice.stop();}catch{}}activeVoices.clear();}
 function syncMusicButton(){ $('music-toggle').setAttribute('aria-pressed',String(musicEnabled));$('music-label').textContent=musicEnabled?'关闭音乐':'开启音乐'; }
+function setMusicStatus(message){
+  $('music-status').textContent=message;
+  const hint=$('music-hint');
+  if(hint)hint.textContent=message;
+}
 function beginMusic(){
   if(musicEnabled) return Promise.resolve(true);
   if(musicStarting) return musicStarting;
   const AudioAPI=window.AudioContext||window.webkitAudioContext;
-  if(!AudioAPI){$('music-status').textContent='当前浏览器暂不支持音乐，仍可阅读祝福和许愿。';return Promise.resolve(false);}
+  if(!AudioAPI){setMusicStatus('当前浏览器暂不支持音乐，仍可阅读祝福和许愿。');return Promise.resolve(false);}
   try{
     if(!audioContext)audioContext=new AudioAPI();
     const context=audioContext;
+    setMusicStatus('正在开启音乐…');
     musicStarting=context.resume().then(()=>{
       musicStarting=null;
-      if(context.state!=='running')return false;
+      if(context.state!=='running'){setMusicStatus('音乐还未开始，请再点一下右上角开启音乐。');return false;}
       if(musicEnabled)return true;
-      musicEnabled=true;syncMusicButton();playNextNote();return true;
-    }).catch(()=>{musicStarting=null;return false;});
+      musicEnabled=true;syncMusicButton();setMusicStatus('音乐已开启，慢慢读这封信吧。');playNextNote();return true;
+    }).catch(()=>{musicStarting=null;setMusicStatus('音乐暂时未能开启，请再点一下右上角的音乐按钮。');return false;});
     return musicStarting;
-  }catch{musicStarting=null;return Promise.resolve(false);}
+  }catch{musicStarting=null;setMusicStatus('音乐暂时未能开启，请再点一下右上角的音乐按钮。');return Promise.resolve(false);}
 }
-const musicGestures=['pointerdown','touchstart','keydown','wheel'];
-function startMusicOnGesture(){
+const musicGestures=['click','keydown'];
+function startMusicOnGesture(event){
+  // The toggle handles its own click, including clicks on its icon/text children.
+  if(event.target?.closest?.('#music-toggle'))return;
+  if(event.type==='keydown' && (event.repeat||event.isComposing||event.ctrlKey||event.metaKey||event.altKey||!['Enter',' '].includes(event.key)))return;
   if(musicMutedByUser||musicEnabled){unbindMusicGestures();return;}
   beginMusic().then(ok=>{if(ok)unbindMusicGestures();});
 }
 function bindMusicGestures(){
   if(gestureBound)return;gestureBound=true;
   for(const type of musicGestures)window.addEventListener(type,startMusicOnGesture,{passive:true});
-  document.addEventListener('scroll',startMusicOnGesture,{passive:true,capture:true});
 }
 function unbindMusicGestures(){
   if(!gestureBound)return;gestureBound=false;
   for(const type of musicGestures)window.removeEventListener(type,startMusicOnGesture);
-  document.removeEventListener('scroll',startMusicOnGesture,{capture:true});
 }
-// Arm the first-gesture fallback right away; if autoplay works we simply unbind it.
+// Do not call beginMusic before user activation, and do not use wheel/scroll events.
 bindMusicGestures();
-beginMusic().then(ok=>{if(ok)unbindMusicGestures();});
 $('music-toggle').addEventListener('click',async()=>{
-  if(musicEnabled){musicMutedByUser=true;musicEnabled=false;stopMusicVoices();syncMusicButton();unbindMusicGestures();if(celebrationDialog.open)startFireworks();return;}
+  if(musicEnabled){musicMutedByUser=true;musicEnabled=false;stopMusicVoices();syncMusicButton();setMusicStatus('音乐已关闭，随时可以再开启。');unbindMusicGestures();if(celebrationDialog.open)startFireworks();return;}
   musicMutedByUser=false;
   const ok=await beginMusic();
+  if(ok)unbindMusicGestures();
   if(ok&&celebrationDialog.open)startFireworks();
-  if(!ok){$('music-status').textContent='音乐暂时无法播放，请稍后再试。';}
 });
 document.addEventListener('visibilitychange',()=>{
   if(document.hidden){stopMusicVoices();if(audioContext)audioContext.suspend().catch(()=>{});}
@@ -466,7 +649,7 @@ function candleBurst(){
 
 try{
   document.documentElement.classList.add('js');
-  const targets=[...document.querySelectorAll('.little-wishes,.our-story,.moments-head,.confession,.wish-section,.closing')];
+  const targets=[...document.querySelectorAll('.little-wishes,.our-story,.moments-head,.confession,.wish-section,.future,.closing,.last-surprise')];
   targets.push(...document.querySelectorAll('.story-moments li'));
   targets.push(...document.querySelectorAll('.gallery figure'));
   if('IntersectionObserver' in window){
@@ -556,6 +739,20 @@ try{
   });
 }catch(err){}
 
+document.querySelectorAll('input[name="future-wish"]').forEach(input=>{
+  input.addEventListener('change',()=>{
+    const count=document.querySelectorAll('input[name="future-wish"]:checked').length;
+    $('future-status').textContent=count ? `收下了 ${count} 个小期待。以后，我们慢慢实现。` : '勾选你也期待的小事。';
+  });
+});
+$('secret-toggle').addEventListener('click',()=>{
+  const expanded=$('secret-toggle').getAttribute('aria-expanded')==='true';
+  $('secret-toggle').setAttribute('aria-expanded',String(!expanded));
+  $('secret-toggle').lastElementChild.textContent=expanded?'＋':'−';
+  $('secret-label').textContent=expanded?'最后，还有一句话想对你说':'把这句悄悄话收好';
+  $('secret-note').hidden=expanded;
+  $('secret-note').classList.toggle('is-revealed',!expanded);
+});
 window.addEventListener('pagehide',()=>{stopMusicVoices();stopFireworks();});
 
 </script>
